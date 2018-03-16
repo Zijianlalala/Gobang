@@ -5,6 +5,7 @@
 下午上人工智能的时候看旁边同学在玩五子棋，于是开始想实现的逻辑。尽管大二的时候就想写一个试试，但是现在才开始动手ORZ。欢迎fork。
 
 游戏界面（没有图形界面的Low货...）
+
 ![Checkerboard](https://raw.githubusercontent.com/Zijianlalala/Images/master/board.png)
 
 ## 实现
