@@ -94,7 +94,7 @@ public class Checkerboard {
 			//向右检查并将i,j归位
 			i = chess.getPosition().getX();
 			j = chess.getPosition().getY();
-			while((i<12 && j<12) && board[i][j]!=null &&chess.getId() == board[i][j].getId()) {
+			while((i<12 && j<12) && board[i][++j]!=null &&chess.getId() == board[i][j].getId()) {
 				count++;
 			}
 		}
