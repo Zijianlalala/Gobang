@@ -6,6 +6,7 @@
 
 ## 实现
 目前只实现了五子连珠的基本逻辑，可以在控制台进行双人下棋。
+![Flowchart](https://raw.githubusercontent.com/Zijianlalala/Images/master/GobangFlowChart.png)
 
 ## 目前存在的Bug
 * 棋子落下的位置可以被新棋子覆盖。
