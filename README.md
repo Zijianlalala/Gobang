@@ -10,6 +10,9 @@
 ### 流程图
 ![Flowchart](https://raw.githubusercontent.com/Zijianlalala/Images/master/GobangFlowChart.png)
 
+### 游戏面板
+![Checkerboard](https://raw.githubusercontent.com/Zijianlalala/Images/master/board.png)
+
 ## 目前存在的Bug
 * 棋子落下的位置可以被新棋子覆盖。
 * 输入坐标的时候只能输入单个数字，没有处理异常。
