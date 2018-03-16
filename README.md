@@ -6,6 +6,8 @@
 
 ## 实现
 目前只实现了五子连珠的基本逻辑，可以在控制台进行双人下棋。
+
+### 流程图
 ![Flowchart](https://raw.githubusercontent.com/Zijianlalala/Images/master/GobangFlowChart.png)
 
 ## 目前存在的Bug
