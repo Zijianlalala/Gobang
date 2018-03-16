@@ -18,9 +18,12 @@
 ![GoBangUML](https://raw.githubusercontent.com/Zijianlalala/Images/master/GoBangUML.png)
 
 
-## 目前存在的Bug
+## 目前存在的问题
+* 大量重复代码，耦合度高，可维护性差
+
+## 已解决
 * 棋子落下的位置可以被新棋子覆盖。
-* 输入坐标的时候只能输入单个数字，没有处理异常。
+* 输入坐标的时候只能输入单个数字，没有异常处理。
 
 ## 待实现
 * 悔棋功能
