@@ -15,6 +15,8 @@
 ![Flowchart](https://raw.githubusercontent.com/Zijianlalala/Images/master/GobangFlowChart.png)
 
 ### UML图
+
+#### 第一版本UML
 ![GoBangUML](https://raw.githubusercontent.com/Zijianlalala/Images/master/GoBangUML.png)
 
 
@@ -24,6 +26,7 @@
 ## 已解决
 * 棋子落下的位置可以被新棋子覆盖。
 * 输入坐标的时候只能输入单个数字，没有异常处理。
+* 重构了棋盘类中检查周围是否有棋子的方法。将其抽象到状态类中。
 
 ## 待实现
 * 悔棋功能
