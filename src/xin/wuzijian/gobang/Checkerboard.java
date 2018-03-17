@@ -1,4 +1,7 @@
 package xin.wuzijian.gobang;
+
+import xin.wuzijian.gobang.states.AroundState;
+
 /**
  * 棋盘类
  * @author wuzijian
@@ -11,85 +14,75 @@ public class Checkerboard {
 	private Chess[][] board = new Chess[HEIGHT_OF_BOARD][LENGTH_OF_BOARD];
 	
 	public int addChess(Chess chess) {
-		int i = chess.getPosition().getX();
-		int j = chess.getPosition().getY();
-		//说明重复下在同一个位置上
-		if(board[i][j]!=null) {
-			return -1;
-		}
+		int i = chess.getX();
+		int j = chess.getY();
+		//判断该位置是否已经有棋子
+		if(board[i][j]!=null) return -1;
 		board[i][j] = chess;	
-		if (checkAround(chess)) {
-			return 1;
-		}
+		if (checkAround(chess)) return 1;
 		return 0;
 	}
 	// 查看四个方向是否有相邻同色棋子  1.左上右下 2.上下 3.左下右上 4.左右
 	private boolean checkAround(Chess chess) {
-		//当前棋子的位置
-		int i = chess.getPosition().getX();
-		int j = chess.getPosition().getY();
 		boolean result = false;
-		if(checkLine(chess,i-1,j-1)|| checkLine(chess,i+1,j+1)) {
-			result = checkBang(chess, 1);
-		} else if(checkLine(chess,i-1,j) || checkLine(chess,i+1,j)) {
-			result = checkBang(chess, 2);
-		} else if(checkLine(chess,i-1,j+1) || checkLine(chess,i+1,j-1)) {
-			result = checkBang(chess, 3);
-		} else if(checkLine(chess,i,j-1) || checkLine(chess,i,j+1)){
-			result = checkBang(chess, 4);
+		for(int i = 0; i < 4; i++) {
+			if(chess.getState(board, AroundState.STATE[i])) {
+				result = checkBang(chess, AroundState.STATE[i]);
+			}
 		}
 		return result;
-	}
-	private boolean checkLine(Chess c, int i, int j) {
-		return board[i][j]!=null && board[i][j].getId() == c.getId();
 	}	
 	// 查看沿当前方向是否有五个连续的同色棋子
 	private boolean checkBang(Chess chess, int type) {
 		// 计数器，当计数器到达5时，五子连珠
 		int count = 1;
-		int i = chess.getPosition().getX();
-		int j = chess.getPosition().getY();
+		int i = chess.getX();
+		int j = chess.getY();
 		if(type == 1) {
+			System.out.println("向左上检查");
 			//向左上检查
 			while((i>0 && j>0) && board[--i][--j]!=null && chess.getId() == board[i][j].getId()) {
 				count++;
 			}
 			//向右下检查并将i,j归位
-			i = chess.getPosition().getX();
-			j = chess.getPosition().getY();
+			i = chess.getX();
+			j = chess.getY();
 			while((i<HEIGHT_OF_BOARD && j<LENGTH_OF_BOARD) && board[++i][++j]!=null &&chess.getId() == board[i][j].getId()) {
 				count++;
 			}
 		} else if(type == 2) {
 			//向上检查
+			System.out.println("向上检查");
 			while((i>0 && j>0) && board[--i][j]!=null && chess.getId() == board[i][j].getId()) {
 				count++;
 			}
 			//向下检查并将i,j归位
-			i = chess.getPosition().getX();
-			j = chess.getPosition().getY();
+			i = chess.getX();
+			j = chess.getY();
 			while((i<HEIGHT_OF_BOARD && j<LENGTH_OF_BOARD) && board[++i][j]!=null &&chess.getId() == board[i][j].getId()) {
 				count++;
 			}
 		} else if(type == 3) {
 			//向右上检查
+			System.out.println("向右上检查");
 			while((i>0 && j>0) && board[--i][++j]!=null && chess.getId() == board[i][j].getId()) {
 				count++;
 			}
 			//向左下检查并将i,j归位
-			i = chess.getPosition().getX();
-			j = chess.getPosition().getY();
+			i = chess.getX();
+			j = chess.getY();
 			while((i<HEIGHT_OF_BOARD && j<LENGTH_OF_BOARD) && board[++i][--j]!=null &&chess.getId() == board[i][j].getId()) {
 				count++;
 			}
 		}else if(type == 4) {
+			System.out.println("向左检查");
 			//向左检查
 			while((i>0 && j>0) && board[i][--j]!=null && chess.getId() == board[i][j].getId()) {
 				count++;
 			}
 			//向右检查并将i,j归位
-			i = chess.getPosition().getX();
-			j = chess.getPosition().getY();
+			i = chess.getX();
+			j = chess.getY();
 			while((i<HEIGHT_OF_BOARD && j<LENGTH_OF_BOARD) && board[i][++j]!=null &&chess.getId() == board[i][j].getId()) {
 				count++;
 			}

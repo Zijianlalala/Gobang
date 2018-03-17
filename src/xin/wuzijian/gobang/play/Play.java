@@ -1,6 +1,9 @@
-package xin.wuzijian.gobang;
+package xin.wuzijian.gobang.play;
 
 import java.util.Scanner;
+
+import xin.wuzijian.gobang.Checkerboard;
+import xin.wuzijian.gobang.Chess;
 
 /**
  * 游戏类（测试类）
@@ -17,27 +20,21 @@ public class Play {
 		Checkerboard board = new Checkerboard();
 		//开始游戏
 		while(true) {
-			//显示棋盘
 			board.showBoard();
-			if(i%2 == 0) {
-				System.out.println("请白棋手下棋。");
-			} else {
-				System.out.println("请黑棋手下棋。");
-			}
-			//输入落棋的坐标，如："3,3"
+			String header = i%2 == 0?"请白棋手下棋。":"请黑棋手下棋。";
+			System.out.println(header);
 			System.out.print("输入您落棋的坐标，用逗号隔开：");
 			String input = sc.nextLine();
-			Position p = new Position();
+			int[] position;
 			try {
-				p = parseInput(input);
+				position = parseInput(input);
 			} catch (Exception e) {
 				//解决输入格式异常
-				System.out.println(e.toString());
 				System.out.println("请以指定格式输入，如：\"5,5\"。");
 				continue;
 			}
 			//新建棋子
-			Chess chess = new Chess(i%2==0?0:1,p);
+			Chess chess = new Chess(i%2==0?0:1,position[0],position[1]);
 			//判断是否胜利或出现复写棋盘的异常
 			int k = board.addChess(chess);
 			if(k == 1) {
@@ -54,13 +51,11 @@ public class Play {
 		}
 			
 	}
-	//处理输入的字符串，并以Postion类型数组输出
-	private static Position parseInput(String input) {
+
+	private static int[] parseInput(String input) {
 		String[] arr = input.split(",");
-		Position p = new Position();
-		p.setX(Integer.parseInt(arr[0]));
-		p.setY(Integer.parseInt(arr[1]));
-		return p;
+		int[] result = {Integer.parseInt(arr[0]), Integer.parseInt(arr[1])};
+		return result;
 	}
 
 }
