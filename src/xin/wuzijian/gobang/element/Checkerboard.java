@@ -1,22 +1,19 @@
 package xin.wuzijian.gobang.element;
 
+import xin.wuzijian.gobang.memento.Memento;
 import xin.wuzijian.gobang.states.AroundState;
 
 /**
  * 棋盘类
- * @author wuzijian
- *
  */
 public class Checkerboard {
-	public static final int HEIGHT_OF_BOARD = 12;
-	public static final int LENGTH_OF_BOARD = 12;
+	public static final int HEIGHT_OF_BOARD = 15;
+	public static final int LENGTH_OF_BOARD = 15;
 	// 维护一个棋盘（二维数组）
 	private Chess[][] board = new Chess[HEIGHT_OF_BOARD][LENGTH_OF_BOARD];
 	
 	public boolean addChess(Chess chess) {
-		int i = chess.getX();
-		int j = chess.getY();
-		board[i][j] = chess;	
+		board[chess.getX()][chess.getY()] = chess;	
 		if (checkAround(chess)) return true;
 		return false;
 	}
@@ -41,8 +38,7 @@ public class Checkerboard {
 	
 	// 查看沿当前方向是否有五个连续的同色棋子
 	private boolean checkBang(Chess chess, int type) {
-		// 计数器，当计数器到达5时，五子连珠
-		int count = 1;
+		int count = 0;
 		for(int i = 0; i < AroundState.STATE.length; i++) {
 			if(type == AroundState.STATE[i]) {
 				count = chess.getCount(board, type);
@@ -64,5 +60,21 @@ public class Checkerboard {
 			}
 			System.out.println();
 		}
+	}
+	
+	//创建备忘录，将当前棋盘数组导入并实例话一个Memento对象
+	public Memento createMemento() {
+		//因为这里传的是数组的引用。所以要新建一个数组
+		Chess[][] newBoard = new Chess[HEIGHT_OF_BOARD][LENGTH_OF_BOARD];
+		for(int i = 0; i < HEIGHT_OF_BOARD; i++) {
+			for(int j = 0; j < LENGTH_OF_BOARD; j++) {
+				newBoard[i][j] = board[i][j];
+			}
+		}
+		return new Memento(newBoard);
+	}
+	//回复备忘录，将Memento导入并将棋盘数据恢复
+	public void setMemento(Memento memento) {
+		this.board = memento.getOldBoard();
 	}
 }
