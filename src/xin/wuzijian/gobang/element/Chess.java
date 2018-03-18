@@ -1,4 +1,4 @@
-package xin.wuzijian.gobang;
+package xin.wuzijian.gobang.element;
 
 import xin.wuzijian.gobang.states.AroundState;
 import xin.wuzijian.gobang.states.HorizontalState;
@@ -22,14 +22,16 @@ public class Chess {
 	private int y;
 	
 	public Chess() {}
+	
 	public Chess(int id, int x, int y) {
+
 		super();
 		this.id = id;
 		this.x = x;
 		this.y = y;
 	}
+	
 	public boolean getState(Chess[][] board, int type) {
-		boolean result = false;
 		switch(type) {
 		case AroundState.LEFT_SLASH_STATE:
 			state = new LeftSlashState();
@@ -42,14 +44,27 @@ public class Chess {
 			break;
 		case AroundState.VERTICAL_STATE:
 			state = new VerticalState();
-			break;
 		}
-		result = state.getState(x, y, id, board);
-		return result;
+		return state.getState(x, y, id, board); 
 	}
 	
-	
-	
+	public int getCount(Chess[][] board, int type) {
+		state = new LeftSlashState();
+		switch(type) {
+		case AroundState.LEFT_SLASH_STATE:
+			state = new LeftSlashState();
+			break;
+		case AroundState.VERTICAL_STATE:
+			state = new VerticalState();
+			break;
+		case AroundState.RIGHT_SLASH_STATE:
+			state = new RightSlashState();
+			break;
+		case AroundState.HORIZONTAL_STATE:
+			state = new HorizontalState();
+		}
+		return state.getCount(x, y, id, board);
+	}
 	
 	//setter&&getter
 	public int getId() {
