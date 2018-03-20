@@ -34,16 +34,20 @@ public class Chess {
 	public boolean getState(Chess[][] board, int type) {
 		switch(type) {
 		case AroundState.LEFT_SLASH_STATE:
-			state = new LeftSlashState();
+//			state = new LeftSlashState();
+			state = LeftSlashState.getInstance();
 			break;
 		case AroundState.RIGHT_SLASH_STATE:
-			state = new RightSlashState();
+//			state = new RightSlashState();
+			state = RightSlashState.getInstance();
 			break;
 		case AroundState.HORIZONTAL_STATE:
-			state = new HorizontalState();
+//			state = new HorizontalState();
+			state = HorizontalState.getInstance();
 			break;
 		case AroundState.VERTICAL_STATE:
-			state = new VerticalState();
+//			state = new VerticalState();
+			state = VerticalState.getInstance();
 		}
 		return state.getState(x, y, id, board); 
 	}
@@ -52,16 +56,20 @@ public class Chess {
 		state = new LeftSlashState();
 		switch(type) {
 		case AroundState.LEFT_SLASH_STATE:
-			state = new LeftSlashState();
+//			state = new LeftSlashState();
+			state = LeftSlashState.getInstance();
 			break;
 		case AroundState.VERTICAL_STATE:
-			state = new VerticalState();
+//			state = new VerticalState();
+			state = VerticalState.getInstance();
 			break;
 		case AroundState.RIGHT_SLASH_STATE:
-			state = new RightSlashState();
+//			state = new RightSlashState();
+			state = RightSlashState.getInstance();
 			break;
 		case AroundState.HORIZONTAL_STATE:
-			state = new HorizontalState();
+//			state = new HorizontalState();
+			state = HorizontalState.getInstance();
 		}
 		return state.getCount(x, y, id, board);
 	}

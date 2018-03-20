@@ -4,7 +4,16 @@ import xin.wuzijian.gobang.element.Checkerboard;
 import xin.wuzijian.gobang.element.Chess;
 
 public class LeftSlashState extends AroundState {
+	// 单例模式 避免生成大量的状态对象
+	private static LeftSlashState singleton;
 
+	public static LeftSlashState getInstance() {
+		if (singleton == null) {
+			singleton = new LeftSlashState();
+		}
+		count = 1;
+		return singleton;
+	}
 	@Override
 	public boolean getState(int i, int j, int id, Chess[][] board) {
 		return checkLine(i-1, j-1, id, board) || checkLine(i+1, j+1, id, board);
@@ -25,7 +34,7 @@ public class LeftSlashState extends AroundState {
 				&& board[++i][++j]!=null &&id == board[i][j].getId()) {
 			count++;
 		}
-		return 0;
+		return count;
 	}
 
 }

@@ -9,7 +9,7 @@ public  abstract class AroundState {
 	public static final int	HORIZONTAL_STATE = 4;
 	public static final int[] STATE = 
 		{ LEFT_SLASH_STATE, VERTICAL_STATE, RIGHT_SLASH_STATE, HORIZONTAL_STATE };
-	protected int count = 1;
+	protected static int count = 1;
 	
 	public abstract boolean getState(int i, int j, int id, Chess[][] board);
 	

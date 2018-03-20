@@ -4,7 +4,15 @@ import xin.wuzijian.gobang.element.Checkerboard;
 import xin.wuzijian.gobang.element.Chess;
 
 public class HorizontalState extends AroundState {
-
+	// 单例模式 避免生成大量的状态对象
+	private static HorizontalState singleton;
+	public static HorizontalState getInstance() {
+		if (singleton == null) {
+			singleton = new HorizontalState();
+		}
+		count = 1;
+		return singleton;
+	}
 	@Override
 	public boolean getState(int i, int j, int id, Chess[][] board) {
 		return checkLine(i,j-1,id,board) || checkLine(i,j+1,id,board);
